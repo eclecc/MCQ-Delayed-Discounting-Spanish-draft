@@ -2,6 +2,12 @@
 
 This repository provides a standardized procedure for estimating individual delay discounting rates (*k*) using the 27-item **Monetary Choice Questionnaire (MCQ)**, based on the syntax and lookup tables from **Gray et al. (2016)**.
 
+## 🧩 Files Included
+
+- `Final_MCQ_R_Syntax_logtrans.txt`: The main R script to be used by all team members (includes k calculation, QC, and log10 transformation)
+- `lookup1MCQ.txt`, `lookup2MCQ.txt`, `lookup3MCQ.txt`: Lookup tables for profile matching
+- `MCQdata_example.txt`: Example input file
+- `README.md`: Project instructions
 ---
 
 ## 📌 Objective
