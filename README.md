@@ -6,7 +6,7 @@ This repository provides a standardized procedure for estimating individual dela
 
 - `Final_MCQ_R_Syntax_logtrans.txt`: The main R script to be used by all team members (includes k calculation, QC, and log10 transformation)
 - `lookup1MCQ.txt`, `lookup2MCQ.txt`, `lookup3MCQ.txt`: Lookup tables for profile matching
-- `MCQdata_example.txt`: Example input file
+- `Sample_MCQ_data.txt`: Example input file
 - `README.md`: Project instructions
 ---
 
