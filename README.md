@@ -93,6 +93,7 @@ Final file: `MCQindices_log_cleaned.txt` contains cleaned and transformed *k* va
 Gray, J. C., et al. (2016).  
 *Syntax for calculation of discounting indices from the monetary choice questionnaire and probability discounting questionnaire.*  
 **Journal of the Experimental Analysis of Behavior**, 106(3), 339–348.  
-https://doi.org/10.1002/jeab.219
+https://onlinelibrary-wiley-com.iclibezp1.cc.ic.ac.uk/doi/10.1002/jeab.221
+
 
 ---
