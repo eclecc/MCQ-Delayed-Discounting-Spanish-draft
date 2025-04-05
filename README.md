@@ -28,11 +28,11 @@ The final output is a **log10-transformed delay discounting rate** for each part
 | 5    | Apply `log10` transformation                           | R            | `log10(k_geo)`                                  |
 
 ---
----
 
 ## 🔧 Optional: Use the `calculate_discount_rate()` function
 
-We now provide a reusable R function to compute *k* values and apply quality filters automatically.
+We now provide a reusable R function to compute *k* values and apply quality filters automatically.  
+The logic is identical to the original script but fully modular and easier to reuse across datasets.
 
 ### 📦 Usage Example
 
@@ -46,16 +46,19 @@ lookup1 <- read.table("lookup1MCQ.txt", header = TRUE)
 lookup2 <- read.table("lookup2MCQ.txt", header = TRUE)
 lookup3 <- read.table("lookup3MCQ.txt", header = TRUE)
 
-# Calculate k and log(k)
+# Run standardized MCQ scoring procedure
 results <- calculate_discount_rate(mcq_data, lookup1, lookup2, lookup3)
 
-# View or save results
+# View or export results
 head(results)
 write.table(results, "MCQ_scored_results.txt", row.names = FALSE)
+```
+
+---
 
 ## 📁 Input Format
 
-Prepare a `.txt` file named `MCQdata.txt` with:
+Prepare a `.txt` file (e.g., `Sample_MCQ_data.txt`) with:
 
 - Column 1: `SubjID`
 - Columns 2–28: `MCQ1` to `MCQ27` (in original item order)
