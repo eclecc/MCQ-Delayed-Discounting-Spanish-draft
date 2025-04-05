@@ -1,7 +1,6 @@
 # mcq-delay-discounting-Gray-et-al.-2016
 
-This repository provides a standardized procedure for estimating individual delay discounting rates (*k*) using the 27-item **Monetary Choice Questionnaire (MCQ)**.  
-It is based on the lookup-table method introduced by **Gray et al. (2016)**.
+This repository provides a standardized procedure for estimating individual delay discounting rates (k) using the 27-item Monetary Choice Questionnaire (MCQ). It is based on the method introduced by **Gray et al. (2016)**.
 
 ---
 
