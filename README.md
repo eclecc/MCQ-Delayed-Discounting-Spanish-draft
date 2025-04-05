@@ -1,12 +1,12 @@
 # mcq-delay-discounting-Gray-et-al.-2016
 
-This repository provides a standardized procedure for estimating individual delay discounting rates (k) using the 27-item Monetary Choice Questionnaire (MCQ). It is based on the method introduced by **Gray et al. (2016)**.
+This repository provides a standardized procedure for estimating individual delay discounting rates (*k*) using the 27-item Monetary Choice Questionnaire (MCQ). It is based on the method introduced by **Gray et al. (2016)**.
 
 ---
 
 ## 🚀 Quick Start
 
-If you're looking for the fastest and cleanest way to estimate *k* values from MCQ data, we recommend using the provided R function:
+If you're looking for the fastest way to estimate *k* values, we recommend using the provided R function:
 
 ```r
 source("calculate_discount_rate.R")
@@ -19,7 +19,7 @@ lookup3 <- read.table("lookup3MCQ.txt", header = TRUE)
 results <- calculate_discount_rate(mcq_data, lookup1, lookup2, lookup3)
 ```
 
-This will return cleaned and log-transformed discounting indices.
+This will return log-transformed discounting indices.
 
 ---
 
@@ -30,8 +30,8 @@ This will return cleaned and log-transformed discounting indices.
 | `calculate_discount_rate.R` | Main R function for computing *k*, QC, and log10(k) |
 | `Sample_MCQ_data.txt` | Example dataset with 27 MCQ items |
 | `lookup1MCQ.txt` `lookup2MCQ.txt` `lookup3MCQ.txt` | Lookup tables for small, medium, and large blocks |
-| `Final_MCQ_R_Syntax_logtrans.txt` | Legacy full script with line-by-line calculations (for transparency or manual step-through) |
-| `README.md` | This instruction file |
+| `Final_MCQ_R_Syntax_logtrans.txt` | Full script with line-by-line calculations |
+| `README.md` | Instruction file |
 
 ---
 
@@ -53,7 +53,7 @@ This will return cleaned and log-transformed discounting indices.
 | 1 | Format raw MCQ data (as `.txt`) | Excel / R | MCQ1–MCQ27 (1 = immediate, 2 = delayed) |
 | 2 | Run function or full script | R | SmlK, MedK, LrgK |
 | 3 | Compute geometric mean | R | k_geo |
-| 4 | Apply QC (automatically) | R | Filtered dataset |
+| 4 | Apply QC  | R | Filtered dataset |
 | 5 | Apply log10 transformation | R | log10(k_geo) |
 
 ---
@@ -77,20 +77,60 @@ SubjID  MCQ1  MCQ2  ...  MCQ27
 
 ## 🧠 Script Logic (for transparency)
 
-The scoring procedure follows Gray et al. (2016) and includes:
+The calculation procedure follows Gray et al. (2016), and includes the following steps:
 
-1. Matching responses to 512 possible profiles per block (small/medium/large)
-2. Retrieving the corresponding k value and internal consistency score
-3. Computing the geometric mean of the three *k*s:  
-   ```r
-   k_geo = (SmlK * MedK * LrgK)^(1/3)
-   ```
-4. Applying QC:
-   - Internal consistency ≥ 75% in all blocks
-   - k_geo within ±3 SD of sample mean
-5. Taking log10(k_geo)
+### 1. Encode response profiles
+
+Each block of 9 items (small, medium, large rewards) is scored by converting the binary response pattern (1 = immediate, 2 = delayed) into a unique numerical identifier called a “sequence code”.
+
+This is done by:
+- Assigning a binary weight to each item (e.g. 1, 2, 4, 8, ..., 256)
+- Summing the weighted responses
+- Subtracting 510 to normalize the code (since 2s are treated as 1s in binary)
+
+This produces three variables: `SmlSeq`, `MedSeq`, and `LrgSeq`.
+
+### 2. Match response sequences to lookup tables
+
+Each `Seq` value is matched against a pre-computed lookup table containing:
+- The corresponding *k* value that best fits that response pattern
+- An internal consistency score (0–1), measuring how consistent the choices are within that block
+
+These values are added to the dataset as:
+- `SmlK`, `MedK`, `LrgK`: estimated discount rates per reward magnitude
+- `SmlCons`, `MedCons`, `LrgCons`: internal consistency per block
+
+### 3. Compute a single summary k-value
+
+A geometric mean is used to combine the three *k* values into a single metric:
+
+```r
+k_geo = (SmlK * MedK * LrgK)^(1/3)
+```
+
+This provides a participant-level measure of delay discounting across all magnitudes.
+
+### 4. Apply quality control (QC)
+
+Two filters are applied to ensure valid responses:
+
+- **Internal consistency filter**: Participants must have ≥ 75% consistency in all three blocks.
+- **Outlier filter**: Participants with `k_geo` values outside ±3 SD of the sample mean are excluded.
+
+These filters are applied automatically in the function.
+
+### 5. Log transformation
+
+Finally, the cleaned `k_geo` value is log-transformed to improve normality and prepare for downstream analyses:
+
+```r
+log10_k_geo = log10(k_geo)
+```
 
 ---
+
+This entire procedure can be reproduced manually using `Final_MCQ_R_Syntax_logtrans.txt`, or automatically using the `calculate_discount_rate()` function.
+
 
 ## 📚 Reference
 
