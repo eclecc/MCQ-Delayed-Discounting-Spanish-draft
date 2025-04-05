@@ -117,11 +117,10 @@ Two filters are applied to ensure valid responses:
 - **Internal consistency filter**: Participants must have ≥ 75% consistency in all three blocks.
 - **Outlier filter**: Participants with `k_geo` values outside ±3 SD of the sample mean are excluded.
 
-These filters are applied automatically in the function.
 
 ### 5. Log transformation
 
-Finally, the cleaned `k_geo` value is log-transformed to improve normality and prepare for downstream analyses:
+Finally, the cleaned `k_geo` value is log-transformed to improve normality and prepare for GWAS analyses:
 
 ```r
 log10_k_geo = log10(k_geo)
