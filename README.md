@@ -28,6 +28,30 @@ The final output is a **log10-transformed delay discounting rate** for each part
 | 5    | Apply `log10` transformation                           | R            | `log10(k_geo)`                                  |
 
 ---
+---
+
+## 🔧 Optional: Use the `calculate_discount_rate()` function
+
+We now provide a reusable R function to compute *k* values and apply quality filters automatically.
+
+### 📦 Usage Example
+
+```r
+# Load function
+source("calculate_discount_rate.R")
+
+# Load sample data and lookup tables
+mcq_data <- read.table("Sample_MCQ_data.txt", header = TRUE)
+lookup1 <- read.table("lookup1MCQ.txt", header = TRUE)
+lookup2 <- read.table("lookup2MCQ.txt", header = TRUE)
+lookup3 <- read.table("lookup3MCQ.txt", header = TRUE)
+
+# Calculate k and log(k)
+results <- calculate_discount_rate(mcq_data, lookup1, lookup2, lookup3)
+
+# View or save results
+head(results)
+write.table(results, "MCQ_scored_results.txt", row.names = FALSE)
 
 ## 📁 Input Format
 
