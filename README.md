@@ -4,10 +4,20 @@ This repository provides a standardized procedure for estimating individual dela
 
 ## 🧩 Files Included
 
-- `Final_MCQ_R_Syntax_logtrans.txt`: The main R script to be used by all team members (includes k calculation, QC, and log10 transformation)
-- `lookup1MCQ.txt`, `lookup2MCQ.txt`, `lookup3MCQ.txt`: Lookup tables for profile matching
-- `Sample_MCQ_data.txt`: Example input file
-- `README.md`: Project instructions
+- `calculate_discount_rate.R`: R function for standardized MCQ scoring  
+  (includes k calculation, QC, and log10 transformation — all mandatory)
+
+- `Sample_MCQ_data.txt`: Example input data (responses to 27-item MCQ)
+
+- `lookup1MCQ.txt`, `lookup2MCQ.txt`, `lookup3MCQ.txt`:  
+  Lookup tables for mapping response patterns to discounting profiles (small, medium, large)
+
+- `Final_MCQ_R_Syntax_logtrans.txt`:  
+  Legacy script with the original line-by-line scoring procedure  
+  (can still be used for reference or step-by-step walkthrough)
+
+- `README.md`: Instructions and documentation for use
+
 ---
 
 ## 📌 Objective
