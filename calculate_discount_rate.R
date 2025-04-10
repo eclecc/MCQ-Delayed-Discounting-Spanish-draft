@@ -61,3 +61,4 @@ calculate_discount_rate <- function(mcq_data, lookup1, lookup2, lookup3) {
   mcq_data$log10_k_geo <- log10(mcq_data$k_geo)
 
   return(mcq_data)
+  }
