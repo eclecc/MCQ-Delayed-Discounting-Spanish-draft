@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elección Múltiple MCQ</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .question {
+      margin: 20px 0;
+    }
+    .options {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .option {
+      padding: 10px 20px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .option:hover {
+      background-color: #f0f0f0;
+    }
+    .option.selected {
+      border-color: #007BFF;
+      background-color: #E0F7FF;
+    }
+  </style>
+</head>
+<body>
+  <h1>Elección Múltiple MCQ</h1>
+  <p>Haz clic en una de las opciones para seleccionar tu respuesta.</p>
+
+  <div class="question">
+    <h2>Pregunta 1: Elige entre las dos opciones</h2>
+    <div class="options">
+      <div class="option" data-value="1">Opción 1 (Inmediata)</div>
+      <div class="option" data-value="2">Opción 2 (Diferida)</div>
+    </div>
+  </div>
+
+  <div id="result">
+    <!-- Aquí se mostrará la selección realizada -->
+  </div>
+
+  <!-- Llamando al archivo JavaScript -->
+  <script src="MCQjava.js"></script>
+</body>
+</html>
